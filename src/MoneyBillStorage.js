@@ -1,22 +1,37 @@
-
 module.exports.MoneyBillStorage = class {
-    
-    constructor(billValue, quantity) {
-        this.billValue = billValue;
-        this.quantity = quantity;
-    }
+  constructor(billValue, amount) {
+    this.billValue = billValue;
+    this.amount = amount;
+  }
 
-    subtractBills (amount) {
-        // lança exceção se valor maior que quantity
-        // decrementa quantity
+  subtractBills(amountToSubtract) {
+    // lança exceção se valor maior que amount
+    // decrementa amount
+    if (amountToSubtract < 0)
+      throw new Error(
+        "Não é possível retirar um número negativo de cédulas"
+      );
+    else if (amountToSubtract > this.amount)
+      throw new Error(
+        "Tentativa de retirar mais cédulas que o existente"
+      );
+    else {
+      this.amount -= amountToSubtract;
     }
+  }
 
-    valueInMaxAvailableBills(value) {
-        // calcula o máximo de notas que podem ser dadas pelo valor
-        // retorna um numero inteiro
-    }
+  availableBillsToPay(value) {
+    // calcula o máximo de notas que podem ser dadas pelo valor
+    // retorna um numero inteiro
+    if (value < 0)
+      throw new Error(
+        "Não é possível calcular cédulas para pagar um valor negativo"
+      );
+    return Math.min(Math.trunc(value / this.billValue), this.amount);
+  }
 
-    getTotalValue() {
-        // retorna a multiplicação de quantity por billValue
-    }
-}
+  getTotalValue() {
+    // retorna a multiplicação de amount por billValue
+    return this.billValue * this.amount;
+  }
+};
