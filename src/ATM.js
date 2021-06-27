@@ -27,16 +27,74 @@ module.exports = class ATM {
     return this.activeClientAccount;
   }
 
-  issueWithdraw(value) {
+  validateWithdraw(value) {
+    if (this.getActiveClientAccount() === null)
+      throw new Error(
+        "Tentativa de retirada sem conta ativa nesta máquina"
+      );
+    else if (this.getActiveClientAccount().getBalance() < value) {
+      throw new Error(
+        "A conta não possui saldo suficiente para a retirada"
+      );
+    } else if (this.getStorageBalance() < value) {
+      throw new Error(
+        "Esta máquina não possui fundos suficientes para a retirada"
+      );
+    }
     // lança uma excessão se não houver usuário logado
     // verifica se o caixa eletrônico possui o valor em dinheiro
     // verifica se o cliente tem o saldo em sua conta
-    //
-    // subtrai o valor do saldo da conta do cliente
-    //
-    // calcula a menor quantidade de notas disponiveis para pagar
-    // subtrai o dinheiro do inventario do caixa eletronico
-    //
-    // entrega as notas ao cliente
+  }
+
+  computeStorageBillsToPay(value) {
+    // calcula a menor quantidade de cada nota disponiveis para pagar o valor
+    let leftValue = value;
+
+    const moneyPackage = [];
+
+    this.moneyBillStorages
+      .sort(
+        (billStorage1, billStorage2) =>
+          billStorage2.billValue - billStorage1.billValue
+      )
+      .forEach((billStorage) => {
+        const billsToPay = billStorage.availableBillsToPay(leftValue);
+
+        if (billsToPay > 0) {
+          moneyPackage.push([billStorage.billValue, billsToPay]);
+          leftValue -= billsToPay * billStorage.billValue;
+        }
+      });
+
+    if (leftValue > 0)
+      throw new Error(
+        `Não foi possível pagar o valor exato com os fundos do caixa, 
+        O valor mais próximo disponível para saque é: R$${
+          value - leftValue
+        }.
+        Tente novamente`
+      );
+    else return moneyPackage;
+  }
+
+  releaseMoneyBills(moneyPackage) {
+    console.log("** A máquina abre seu compartimento de cédulas **");
+    console.log("São liberadas: ");
+    console.log(moneyPackage);
+    for (let [billValue, billAmount] of moneyPackage) {
+      this.moneyBillStorages
+        .find((billStorage) => billStorage.billValue === billValue)
+        .subtractBills(billAmount);
+
+      console.log(` ${billAmount} cédulas de ${billValue} reais,`);
+    }
+    console.log("** O compartimento de cédulas é fechado **");
+  }
+
+  issueWithdraw(value) {
+    this.validateWithdraw(value);
+    const moneyPackage = this.computeStorageBillsToPay(value);
+    this.getActiveClientAccount().withdraw(value);
+    this.releaseMoneyBills(moneyPackage);
   }
 };
