@@ -1,4 +1,4 @@
-module.exports.MoneyBillStorage = class {
+module.exports = class MoneyBillStorage {
   constructor(billValue, amount) {
     this.billValue = billValue;
     this.amount = amount;

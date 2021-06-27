@@ -1,4 +1,4 @@
-const { MoneyBillStorage } = require("./MoneyBillStorage");
+const MoneyBillStorage = require("./MoneyBillStorage");
 
 describe("MoneyBillStorage", function () {
   describe("método getTotalValue", function () {
