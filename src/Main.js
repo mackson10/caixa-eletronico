@@ -39,8 +39,7 @@ module.exports = class Main {
         `\nCliente: ${this.clientAccount.clientName} -- Saldo: ${clientBalance} \n\n` +
           `Operações disponíveis: \n\n` +
           `1 - Saque \n` +
-          `2 - Mostrar níves do estoque de cédulas \n` +
-          `3 - ... \n\n`
+          `2 - Mostrar níves do estoque de cédulas \n\n`
       );
 
       if (chosenOperation == 1) {
