@@ -21,7 +21,6 @@ ClientAccount (conta)
 MoneyBillStorage (Armazenamento de Cédulas)
 
 Comandos:
-
 npm install | instalar
 
 npm start | executar aplicação
