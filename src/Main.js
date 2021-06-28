@@ -1,5 +1,5 @@
-const ATM = require("./src/ATM");
-const ClientAccount = require("./src/ClientAccount");
+const ATM = require("./ATM");
+const ClientAccount = require("./ClientAccount");
 const rl = require("./lib/readline");
 
 module.exports = class Main {
@@ -23,20 +23,20 @@ module.exports = class Main {
       +clientBalance || Infinity
     );
 
-    this.myATM.setActiveClientAccount(clientAccount);
+    this.myATM.setActiveClientAccount(this.clientAccount);
 
-    while (true) this.loop();
+    while (true) await this.loop();
   }
 
   async loop() {
     try {
       const clientBalance =
         this.clientAccount.getBalance() !== Infinity
-          ? `R$${clientAccount.getBalance().toFixed(2)}`
+          ? `R$${this.clientAccount.getBalance().toFixed(2)}`
           : "Infinito";
 
       const chosenOperation = await rl.questionPromise(
-        `\nCliente: ${clientAccount.clientName} -- Saldo: ${clientBalance} \n\n` +
+        `\nCliente: ${this.clientAccount.clientName} -- Saldo: ${clientBalance} \n\n` +
           `Operações disponíveis: \n\n` +
           `1 - Saque \n` +
           `2 - ... \n` +
