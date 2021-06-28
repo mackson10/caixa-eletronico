@@ -96,4 +96,22 @@ module.exports = class ATM {
     this.getActiveClientAccount().withdraw(value);
     this.releaseMoneyBills(moneyPackage);
   }
+
+  showBillStorageLevels() {
+    console.log(
+      "\n\n Valor total nesta máquina: " +
+        this.getStorageBalance() +
+        "\n",
+      "Cédula | Em estoque \n",
+      ...this.moneyBillStorages.map((billStorage) => {
+        return (
+          "\n R$" +
+          billStorage.billValue +
+          " | " +
+          billStorage.amount +
+          " unidades"
+        );
+      })
+    );
+  }
 };

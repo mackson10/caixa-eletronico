@@ -23,6 +23,21 @@ describe("ATM", function () {
     });
   });
 
+  describe("método showBillStorageLevels", function () {
+    test("deve invocar a função console.log", () => {
+      const billStorage1 = new MoneyBillStorage(10, 80);
+      const billStorage2 = new MoneyBillStorage(50, 70);
+
+      let ATM1 = new ATM([billStorage1, billStorage2]);
+
+      const consoleLogMock = jest.spyOn(console, "log");
+
+      ATM1.showBillStorageLevels();
+
+      expect(consoleLogMock).toBeCalled();
+    });
+  });
+
   describe("método setActiveClientAccount", function () {
     test("deve trocar o valor de activeClientAccount pelo parâmetro fornecido", () => {
       let ATM1 = new ATM([]);

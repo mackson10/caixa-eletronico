@@ -39,7 +39,7 @@ module.exports = class Main {
         `\nCliente: ${this.clientAccount.clientName} -- Saldo: ${clientBalance} \n\n` +
           `Operações disponíveis: \n\n` +
           `1 - Saque \n` +
-          `2 - ... \n` +
+          `2 - Mostrar níves do estoque de cédulas \n` +
           `3 - ... \n\n`
       );
 
@@ -49,6 +49,8 @@ module.exports = class Main {
         );
 
         this.myATM.issueWithdraw(withdrawValue);
+      } else if (chosenOperation == 2) {
+        this.myATM.showBillStorageLevels();
       } else {
         console.log(
           "\nOperação não implementada, tente novamente. \n"
