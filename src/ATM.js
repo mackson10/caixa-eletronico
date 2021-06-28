@@ -68,7 +68,7 @@ module.exports = class ATM {
 
     if (leftValue > 0)
       throw new Error(
-        `Não foi possível pagar o valor exato com os fundos do caixa, 
+        `Não foi possível pagar o valor exato com as cédulas no caixa, 
         O valor mais próximo disponível para saque é: R$${
           value - leftValue
         }.
