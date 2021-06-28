@@ -18,9 +18,11 @@ ClientAccount (conta)
 MoneyBillStorage (Armazenamento de Cédulas)
 
 Comandos:
-npm install -- instalar
-npm start -- executar aplicação
-npm test -- executar testes automatizados
+npm install | instalar
+
+npm start | executar aplicação
+
+npm test | executar testes automatizados
 
 Utilização:
 Quando a aplicação é iniciada é requisitado o nome do cliente e saldo da conta.
