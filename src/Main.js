@@ -48,7 +48,7 @@ module.exports = class Main {
           "\nValor da retirada: "
         );
 
-        this.myATM.issueWithdraw(withdrawValue);
+        this.myATM.issueWithdraw(+withdrawValue);
       } else if (chosenOperation == 2) {
         this.myATM.showBillStorageLevels();
       } else {
