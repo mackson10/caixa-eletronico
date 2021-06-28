@@ -80,7 +80,6 @@ module.exports = class ATM {
   releaseMoneyBills(moneyPackage) {
     console.log("** A máquina abre seu compartimento de cédulas **");
     console.log("São liberadas: ");
-    console.log(moneyPackage);
     for (let [billValue, billAmount] of moneyPackage) {
       this.moneyBillStorages
         .find((billStorage) => billStorage.billValue === billValue)
