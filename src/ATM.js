@@ -28,6 +28,10 @@ module.exports = class ATM {
   }
 
   validateWithdraw(value) {
+    if (!Number.isInteger(value))
+      throw new Error("Valor de retirada deve ser um número inteiro");
+    else if (value < 1)
+      throw new Error("Valor de retirada deve ser um número maior que ou igual a 1 (unidade monetária)");
     if (this.getActiveClientAccount() === null)
       throw new Error(
         "Tentativa de retirada sem conta ativa nesta máquina"
@@ -70,7 +74,7 @@ module.exports = class ATM {
       throw new Error(
         `Não foi possível pagar o valor exato com as cédulas no caixa, 
         O valor mais próximo disponível para saque é: R$${
-          value - leftValue
+        value - leftValue
         }.
         Tente novamente`
       );
@@ -100,8 +104,8 @@ module.exports = class ATM {
   showBillStorageLevels() {
     console.log(
       "\n\n Valor total nesta máquina: " +
-        this.getStorageBalance() +
-        "\n",
+      this.getStorageBalance() +
+      "\n",
       "Cédula | Em estoque \n",
       ...this.moneyBillStorages.map((billStorage) => {
         return (
