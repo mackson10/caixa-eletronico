@@ -8,6 +8,7 @@ O cenário proposto foi o de um caixa eletrônico, que seleciona a quantidade de
 
 ## Observações importantes
 
+- Testado e funcionando em Ubuntu 18, Node.JS versões 12 e 14
 - Foi pedido que o problema fosse resolvido da maneira mais simples possível, e ao mesmo tempo que houvesse uma modelagem de classes e testes automatizados. A solução mais simples seria apenas uma função com poucos parâmetros. Mas como o objetivo é demonstrar as técnicas envolvidas, tomei a liberdade de fazer um pouco mais que o mais simples possivel. Um número maior de funções com menos responsabilidades foi necessário para facilitar os testes automatizados ao mesmo tempo garantir abrangência.
 - Outro ponto sobre os testes, alguns testes mais triviais de checagem de tipos não foram incluídos pois em aplicações reais este tipo de checagem costuma ser feita com ferramentas como Typescript.
 
@@ -21,7 +22,7 @@ A classe `Main` é apenas um executor, intermediando uma interface por linha de 
 
 Comandos:
 
-`npm install` | instalar
+`npm install` | instalar dependencias
 
 `npm start` | executar aplicação
 
