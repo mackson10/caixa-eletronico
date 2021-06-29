@@ -27,6 +27,10 @@ module.exports = class MoneyBillStorage {
       throw new Error(
         "Não é possível calcular cédulas para pagar um valor negativo"
       );
+    if (!Number.isFinite(value))
+      throw new Error(
+        "Não é possível calcular cédulas para pagar um valor não finito"
+      );
     return Math.min(Math.trunc(value / this.billValue), this.amount);
   }
 
