@@ -26,7 +26,9 @@ describe("ClientAccount", function () {
         "Maria da Silva",
         balance2
       );
-      expect(() => clientAccount2.withdraw(balance2 + 1000)).toThrow();
+      expect(() =>
+        clientAccount2.withdraw(balance2 + 1000)
+      ).toThrow();
     });
 
     test("deve lançar uma exceção se o valor a ser retirado for negativo", () => {
@@ -50,7 +52,10 @@ describe("ClientAccount", function () {
       clientAccount1.withdraw(3000);
       expect(clientAccount1.getBalance()).toBe(500);
 
-      let clientAccount2 = new ClientAccount("José da Silva", Infinity);
+      let clientAccount2 = new ClientAccount(
+        "José da Silva",
+        Infinity
+      );
       clientAccount2.withdraw(3000);
       expect(clientAccount2.getBalance()).toBe(Infinity);
     });

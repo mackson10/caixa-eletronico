@@ -33,10 +33,14 @@ describe("MoneyBillStorage", function () {
 
     test("deve lançar uma exceção quando não recebe um número finito de cédulas como parâmetro", () => {
       let moneyBillStorage1 = new MoneyBillStorage(50, 100);
-      expect(() => moneyBillStorage1.subtractBills(Infinity)).toThrow();
+      expect(() =>
+        moneyBillStorage1.subtractBills(Infinity)
+      ).toThrow();
 
       let moneyBillStorage2 = new MoneyBillStorage(20, 100);
-      expect(() => moneyBillStorage2.subtractBills(-Infinity)).toThrow();
+      expect(() =>
+        moneyBillStorage2.subtractBills(-Infinity)
+      ).toThrow();
     });
 
     test("deve subtrair o número de cédulas retirado do número de cédulas restantes", () => {
@@ -57,15 +61,10 @@ describe("MoneyBillStorage", function () {
   describe("método availableBillsToPay", function () {
     test("o retorno deve ser o menor número de cédulas para pagar um valor(sem troco)", () => {
       let moneyBillStorage1 = new MoneyBillStorage(50, 7);
-      expect(
-        moneyBillStorage1.availableBillsToPay(175)
-      ).toBe(3);
+      expect(moneyBillStorage1.availableBillsToPay(175)).toBe(3);
 
       let moneyBillStorage2 = new MoneyBillStorage(5, 5);
-      expect(
-        moneyBillStorage2.availableBillsToPay(3)
-      ).toBe(0);
-
+      expect(moneyBillStorage2.availableBillsToPay(3)).toBe(0);
     });
 
     test("o retorno não pode ser maior que o número de cédulas restantes", () => {

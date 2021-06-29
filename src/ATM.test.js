@@ -116,7 +116,10 @@ describe("ATM", function () {
       expect(() => ATM1.validateWithdraw(4000)).toThrow();
 
       let ATM2 = new ATM([]);
-      let clientAccount2 = new ClientAccount("Silvio Silva", Infinity);
+      let clientAccount2 = new ClientAccount(
+        "Silvio Silva",
+        Infinity
+      );
 
       ATM2.setActiveClientAccount(clientAccount2);
 
@@ -194,10 +197,22 @@ describe("ATM", function () {
       const moneyBillStorage20 = new MoneyBillStorage(20, 5);
       const moneyBillStorage10 = new MoneyBillStorage(10, 3);
 
-      const moneyBillStorage100_subtractBills = jest.spyOn(moneyBillStorage100, "subtractBills");
-      const moneyBillStorage50_subtractBills = jest.spyOn(moneyBillStorage50, "subtractBills");
-      const moneyBillStorage20_subtractBills = jest.spyOn(moneyBillStorage20, "subtractBills");
-      const moneyBillStorage10_subtractBills = jest.spyOn(moneyBillStorage10, "subtractBills");
+      const moneyBillStorage100_subtractBills = jest.spyOn(
+        moneyBillStorage100,
+        "subtractBills"
+      );
+      const moneyBillStorage50_subtractBills = jest.spyOn(
+        moneyBillStorage50,
+        "subtractBills"
+      );
+      const moneyBillStorage20_subtractBills = jest.spyOn(
+        moneyBillStorage20,
+        "subtractBills"
+      );
+      const moneyBillStorage10_subtractBills = jest.spyOn(
+        moneyBillStorage10,
+        "subtractBills"
+      );
 
       let ATM1 = new ATM([
         moneyBillStorage50,
@@ -234,7 +249,10 @@ describe("ATM", function () {
       let clientAccount1 = new ClientAccount("Ívo Fernandes", 1000);
       ATM1.setActiveClientAccount(clientAccount1);
 
-      const ATM1_validateWithdraw = jest.spyOn(ATM1, "validateWithdraw");
+      const ATM1_validateWithdraw = jest.spyOn(
+        ATM1,
+        "validateWithdraw"
+      );
 
       const value = 1000;
 
@@ -251,7 +269,9 @@ describe("ATM", function () {
 
       const value = 2000;
 
-      const ATM1_computeStorageBillsToPay = jest.spyOn(ATM1, "computeStorageBillsToPay").mockImplementation(() => []);
+      const ATM1_computeStorageBillsToPay = jest
+        .spyOn(ATM1, "computeStorageBillsToPay")
+        .mockImplementation(() => []);
 
       ATM1.issueWithdraw(value);
 
@@ -266,8 +286,14 @@ describe("ATM", function () {
       let clientAccount1 = new ClientAccount("Ívo Fernandes", 5000);
       ATM1.setActiveClientAccount(clientAccount1);
 
-      const clientAccount1_withdraw = jest.spyOn(clientAccount1, "withdraw");
-      const ATM1_getActiveClientAccount = jest.spyOn(ATM1, "getActiveClientAccount");
+      const clientAccount1_withdraw = jest.spyOn(
+        clientAccount1,
+        "withdraw"
+      );
+      const ATM1_getActiveClientAccount = jest.spyOn(
+        ATM1,
+        "getActiveClientAccount"
+      );
 
       const value = 4000;
 
@@ -285,8 +311,12 @@ describe("ATM", function () {
 
       const mockedMoneyPackage = Symbol("MockedmoneyPackage");
 
-      jest.spyOn(ATM1, "computeStorageBillsToPay").mockReturnValue(mockedMoneyPackage);
-      const ATM1_releaseMoneyBills = jest.spyOn(ATM1, "releaseMoneyBills").mockImplementation(() => { })
+      jest
+        .spyOn(ATM1, "computeStorageBillsToPay")
+        .mockReturnValue(mockedMoneyPackage);
+      const ATM1_releaseMoneyBills = jest
+        .spyOn(ATM1, "releaseMoneyBills")
+        .mockImplementation(() => {});
 
       const value = 1000;
 
