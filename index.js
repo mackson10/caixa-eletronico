@@ -1,15 +1,21 @@
 const MoneyBillStorage = require("./src/MoneyBillStorage");
 const Main = require("./src/Main");
 
-// Modifique o primeiro parâmetro passado no construtor para usar cédulas com outros valores
-// Modifique o segundo parâmetro do construtor para utilizar estoques de cédulas finitos
-// Não é esperado que haja repetição do valor unitário(billValue) neste array
-const billStorages = [
+// Cada item do array representa o estoque para um valor de cédula
+// O primeiro parâmetro da classe MoneyBillStorage é o valor unitário de cédula (não deve se repetir neste array)
+// O segundo parâmetro é a quantidade que o caixa eletrônico possui em unidades de cédula de tal valor
+const defaultBillStorages = [
   new MoneyBillStorage(100, Infinity),
   new MoneyBillStorage(50, Infinity),
   new MoneyBillStorage(20, Infinity),
   new MoneyBillStorage(10, Infinity),
 ];
 
-const main = new Main(billStorages);
+const config = {
+  defaultBillStorages,
+  defaultAccountClientName: "João da Silva",
+  defaultAccountClientBalance: Infinity,
+};
+
+const main = new Main(config);
 main.init();
